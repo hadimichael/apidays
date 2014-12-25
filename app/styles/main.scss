@@ -7,6 +7,12 @@ body {
 	color: #333;
 }
 
+* {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
 .browsehappy {
 	margin: 0.2em 0;
 	background: #ccc;
