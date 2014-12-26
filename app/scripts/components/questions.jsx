@@ -35,7 +35,11 @@ var QuestionList = React.createClass({
 	handleSubmit: function(e) {
 		e.preventDefault(); //manually submit the form to Parse
 
-		var self = this;
+		var self = this,
+			submitButton = $('#submit'),
+			disabledButtonClass = 'pure-button-disabled';
+
+		submitButton.addClass(disabledButtonClass);
 
 		var Session = Parse.Object.extend("Session"),
 			session = new Session();
@@ -63,14 +67,13 @@ var QuestionList = React.createClass({
 			objectsForBatchSave.push(result);
 		}
 
-		Parse.Object.saveAll(objectsForBatchSave, {
-			success: function(list) {
-				console.log('Saved answers', list);
-				self.clearQuestionsByList(list);
-			},
-			error: function(error) {
-				console.log('Error', error);
-			},
+		Parse.Object.saveAll(objectsForBatchSave).then(function(list) {
+			console.log('Saved answers', list);
+			self.clearQuestionsByList(list);
+		}, function(error) {
+			console.log('Error', error);
+		}).then(function () {
+			submitButton.removeClass(disabledButtonClass);
 		});
 	},
 	render: function() {
@@ -78,7 +81,7 @@ var QuestionList = React.createClass({
 			return (
 				<form id="survey-form" onSubmit={this.handleSubmit} className="pure-form">
 					<div>{this.state.questions}</div>
-					<input type="submit" value="Submit" className="pure-button pure-button-primary" />
+					<input id="submit" type="submit" value="Submit" className="pure-button pure-button-primary" />
 				</form>
 			);
 		}
