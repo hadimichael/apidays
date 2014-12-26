@@ -24,13 +24,13 @@ var OptionList = React.createClass({
 			uuidForSet = this.props.options.uuid;
 
 		//we default to Radio Buttons, since we can always expect at least 1 option to be selected.
-		if (this.props.options.radios) {
-			radios = this.props.options.radios.map(function(option) {
-				return <OptionRadio key={option.key} value={option.value} uuidForSet={uuidForSet} />
-			});
-		} else if (this.props.options.checkboxes) {
-			checkboxes = this.props.options.checkboxes.map(function(option) {
+		if (this.props.options.acceptsMultipleOptions) {
+			checkboxes = this.props.options.values.map(function(option) {
 				return <OptionCheckbox key={option.key} value={option.value} uuidForSet={uuidForSet} />
+			});
+		} else {
+			radios = this.props.options.values.map(function(option) {
+				return <OptionRadio key={option.key} value={option.value} uuidForSet={uuidForSet} />
 			});
 		}
 		
