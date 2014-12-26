@@ -9,42 +9,47 @@ if (typeof console === 'undefined') {
 	'use strict';
 
 	NAMESPACE.init = function() {
-		var questions = [];
+		var questionList = [];
 
 		Parse.initialize(NAMESPACE.credentials.parse.appId, NAMESPACE.credentials.parse.jsKey);
 
-		var Question = Parse.Object.extend("Question");
+		var Question = Parse.Object.extend('Question');
+
 		var query = new Parse.Query(Question);
-		query.equalTo("available", true);
+		query.equalTo('available', true);
+		query.include('options');
 		query.find({
-			success: function(results) {
-				for (var i=0; i < results.length; i++) {
+			success: function(questions) {
+				for (var i=0; i < questions.length; i++) {
 					var values = [],
-						question = results[i];
+						question = questions[i];
 					var options = question.get('options');
 
 					for (var j=0; j < options.length; j++) {
-						values.push({value:options[j], key:j});
+						var option = options[j],
+							text = option.get('text');
+
+						values.push({text:text, optionId:options[j].id, key:options[j].id});
 					}
 
-					questions.push({
-						key: results[i].id,
-						title: results[i].get('title'),
+					questionList.push({
+						key: questions[i].id,
+						title: questions[i].get('title'),
 						options: {
-							uuid: results[i].id,
-							acceptsMultipleOptions: results[i].get('acceptsMultipleOptions'),
+							questionId: questions[i].id,
+							acceptsMultipleOptions: questions[i].get('acceptsMultipleOptions'),
 							values: values
 						}
-					})
+					});
 				}
 
 				React.render(
-					React.createElement(QuestionList, {questions: questions}),
+					React.createElement(QuestionList, {questions: questionList}),
 					document.getElementById('questions')
 				);
 			},
 			error: function(error) {
-				console.error("Error: " + error.code + " " + error.message);
+				console.error('Error: ' + error.code + ' ' + error.message);
 			}
 		});
 	};
