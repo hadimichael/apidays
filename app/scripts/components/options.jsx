@@ -26,11 +26,11 @@ var OptionList = React.createClass({
 		//we default to Radio Buttons, since we can always expect at least 1 option to be selected.
 		if (this.props.options.radios) {
 			radios = this.props.options.radios.map(function(option) {
-				return <OptionRadio key={option.id} value={option.value} uuidForSet={uuidForSet} />
+				return <OptionRadio key={option.key} value={option.value} uuidForSet={uuidForSet} />
 			});
 		} else if (this.props.options.checkboxes) {
 			checkboxes = this.props.options.checkboxes.map(function(option) {
-				return <OptionCheckbox key={option.id} value={option.value} uuidForSet={uuidForSet} />
+				return <OptionCheckbox key={option.key} value={option.value} uuidForSet={uuidForSet} />
 			});
 		}
 		

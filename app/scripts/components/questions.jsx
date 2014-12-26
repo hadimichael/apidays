@@ -13,3 +13,15 @@ var Question = React.createClass({
 			);
 	}
 });
+
+var QuestionList = React.createClass({
+	render: function() {
+		var questions = this.props.questions.map(function(question) {
+			return <Question key={question.key} title={question.title} options={question.options} />
+		});
+		
+		return (
+				<div>{questions}</div>
+			);
+	}
+});
