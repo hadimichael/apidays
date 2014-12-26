@@ -9,49 +9,34 @@ if (typeof console === 'undefined') {
 	'use strict';
 
 	NAMESPACE.init = function() {
-		var questionList = [];
-
 		Parse.initialize(NAMESPACE.credentials.parse.appId, NAMESPACE.credentials.parse.jsKey);
 
-		var Question = Parse.Object.extend('Question');
+		if (!Cookies.enabled) { $('#questions').html('<p>You must have cookies enabled.</p>'); return; }
 
-		var query = new Parse.Query(Question);
-		query.equalTo('available', true);
-		query.include('options');
-		query.find({
-			success: function(questions) {
-				for (var i=0; i < questions.length; i++) {
-					var values = [],
-						question = questions[i];
-					var options = question.get('options');
+		//organise sessions
+		var sessionId = Cookies.get(NAMESPACE.credentials.cookieKey);
 
-					for (var j=0; j < options.length; j++) {
-						var option = options[j],
-							text = option.get('text');
+		if (sessionId) {
+			NAMESPACE.questions.init(sessionId);
+		} else {
+			var Session = Parse.Object.extend('Session'),
+				session = new Session();
+			
+			//get the user IP to store
+			$.getJSON("http://api.ipify.org?format=jsonp&callback=?",
+				function(response) {
+					session.set('ip', response.ip);
 
-						values.push({text:text, optionId:options[j].id, key:options[j].id});
-					}
-
-					questionList.push({
-						key: questions[i].id,
-						title: questions[i].get('title'),
-						options: {
-							questionId: questions[i].id,
-							acceptsMultipleOptions: questions[i].get('acceptsMultipleOptions'),
-							values: values
-						}
+					session.save().then(function(obj) {
+						Cookies.set(NAMESPACE.credentials.cookieKey, obj.id, {expires: new Date(2015, 0, 1)});
+						NAMESPACE.questions.init(obj.id);
+					}, function(error) {
+						console.error('Could not create session');
 					});
 				}
+			);
+		}
 
-				React.render(
-					React.createElement(QuestionList, {questions: questionList}),
-					document.getElementById('questions')
-				);
-			},
-			error: function(error) {
-				console.error('Error: ' + error.code + ' ' + error.message);
-			}
-		});
 	};
 
 	$(document).ready(function() {

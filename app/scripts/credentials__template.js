@@ -10,7 +10,8 @@
 			parse: {
 				appId: 'YOUR_PARSE_APP_ID',
 				jsKey: 'YOUR_PARSE_JAVASCRIPT_KEY'
-			}
+			},
+			cookieKey: 'apidays15-sessionId'
 		}
 		
 	}());
