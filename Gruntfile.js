@@ -17,6 +17,7 @@ module.exports = function (grunt) {
   require('load-grunt-tasks')(grunt);
 
   grunt.loadNpmTasks('grunt-react');
+  grunt.loadNpmTasks('grunt-gh-pages');
 
   // Configurable paths
   var config = {
@@ -393,6 +394,13 @@ module.exports = function (grunt) {
         'imagemin',
         'svgmin'
       ]
+    },
+
+    'gh-pages': {
+      options: {
+        base: 'dist'
+      },
+      src: ['**']
     }
   });
 
@@ -451,6 +459,16 @@ module.exports = function (grunt) {
     'rev',
     'usemin',
     'htmlmin'
+  ]);
+
+  grunt.registerTask('deploy', [
+    'gh-pages-clean',
+    'gh-pages'
+  ]);
+
+  grunt.registerTask('build-deploy', [
+    'build',
+    'deploy'
   ]);
 
   grunt.registerTask('default', [
