@@ -3,6 +3,8 @@
   "private": true,
   "dependencies": {
     "jquery": "~1.11.1",
-    "modernizr": "~2.8.2"
+    "modernizr": "~2.8.2",
+    "es5-shim": "~4.0.5",
+    "react": "~0.12.2"
   }
 }

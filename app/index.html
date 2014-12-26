@@ -36,12 +36,12 @@
 
 							<nav class="nav">
 								<ul class="nav-list">
-										<li class="nav-item">
-												<a class="pure-button" href="https://twitter.com/hadi_michael">@hadi_michael</a>
-										</li>
-										<li class="nav-item">
-												<a class="pure-button" href="/results.html">Survey Results</a>
-										</li>
+									<li class="nav-item">
+										<a class="pure-button" href="https://twitter.com/hadi_michael">@hadi_michael</a>
+									</li>
+									<li class="nav-item">
+										<a class="pure-button" href="/results.html">Show Results</a>
+									</li>
 								</ul>
 						</nav>
 					</div>
@@ -52,61 +52,7 @@
 						<!-- A wrapper for all the current questions -->
 						<h1 class="content-subhead">Current questions</h1>
 
-						<!-- A single question -->
-						<section class="question">
-								<header class="question-header">
-										<h2 class="question-title">What are developer portals good for?</h2>
-								</header>
-
-								<div class="question-description">
-									<form class="pure-form">
-										<label for="checkbox-option-1" class="pure-checkbox">
-											<input id="checkbox-option-1" type="checkbox" value="">
-											API Documentation
-										</label>
-
-										<label for="checkbox-option-2" class="pure-checkbox">
-											<input id="checkbox-option-2" type="checkbox" value="">
-											Terms of Use
-										</label>
-
-										<label for="checkbox-option-3" class="pure-checkbox">
-											<input id="checkbox-option-3" type="checkbox" value="">
-											Blogs
-										</label>
-
-										<label for="checkbox-option-4" class="pure-checkbox">
-											<input id="checkbox-option-4" type="checkbox" value="">
-											Forums
-										</label>
-
-										<label for="checkbox-option-5" class="pure-checkbox">
-											<input id="checkbox-option-5" type="checkbox" value="">
-											Create/manage apps and API keys
-										</label>
-									</form>
-								</div>
-						</section>
-
-						<section class="question">
-								<header class="question-header">
-										<h2 class="question-title">Does an API Portal need to be branded?</h2>
-								</header>
-
-								<div class="question-description">
-									<form class="pure-form">
-										<label for="radio-option-1" class="pure-radio">
-											<input id="radio-option-1" type="radio" name="optionsRadios" value="">
-											Yes
-										</label>
-
-										<label for="radio-option-2" class="pure-radio">
-											<input id="radio-option-2" type="radio" name="optionsRadios" value="">
-											Radio
-										</label>
-									</form>
-								</div>
-						</section>
+						<div id="questions"><!-- Space for React to inject questions --></div>
 				</div>
 
 				<div class="footer">
@@ -115,10 +61,13 @@
 			</div>
 		</div>
 
-
+		<script src="http://fb.me/react-0.12.2.js"></script>
+		<script src="http://fb.me/JSXTransformer-0.12.2.js"></script>
 		<!-- build:js(.) scripts/vendor.js -->
 		<!-- bower:js -->
+		<script src="bower_components/es5-shim/es5-shim.js"></script>
 		<script src="bower_components/jquery/dist/jquery.js"></script>
+		<script src="bower_components/react/react.js"></script>
 		<!-- endbower -->
 		<!-- endbuild -->
 
@@ -133,6 +82,8 @@
 		</script>
 
 				<!-- build:js({app,.tmp}) scripts/main.js -->
+				<script src="scripts/components/compiled/options.js"></script>
+				<script src="scripts/components/compiled/questions.js"></script>
 				<script src="scripts/main.js"></script>
 				<!-- endbuild -->
 </body>

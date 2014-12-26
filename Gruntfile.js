@@ -16,6 +16,8 @@ module.exports = function (grunt) {
   // Load grunt tasks automatically
   require('load-grunt-tasks')(grunt);
 
+  grunt.loadNpmTasks('grunt-react');
+
   // Configurable paths
   var config = {
     app: 'app',
@@ -37,6 +39,13 @@ module.exports = function (grunt) {
       js: {
         files: ['<%= config.app %>/scripts/{,*/}*.js'],
         tasks: ['jshint'],
+        options: {
+          livereload: true
+        }
+      },
+      jsx: {
+        files: ['<%= config.app %>/scripts/components/**/*.jsx'],
+        tasks: ['react'],
         options: {
           livereload: true
         }
@@ -136,6 +145,20 @@ module.exports = function (grunt) {
         '!<%= config.app %>/scripts/vendor/*',
         'test/spec/{,*/}*.js'
       ]
+    },
+
+    react: {
+      dynamic_mappings: {
+        files: [
+          {
+            expand: true,
+            cwd: '<%= config.app %>/scripts/components',
+            src: ['**/*.jsx'],
+            dest: '<%= config.app %>/scripts/components/compiled',
+            ext: '.js'
+          }
+        ]
+      }
     },
 
     // Mocha testing framework configuration options
@@ -384,6 +407,7 @@ module.exports = function (grunt) {
 
     grunt.task.run([
       'clean:server',
+      'react',
       'wiredep',
       'concurrent:server',
       'autoprefixer',
@@ -414,6 +438,7 @@ module.exports = function (grunt) {
 
   grunt.registerTask('build', [
     'clean:dist',
+    'react',
     'wiredep',
     'useminPrepare',
     'concurrent:dist',
