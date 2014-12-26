@@ -34,7 +34,7 @@ var QuestionList = React.createClass({
 
 				var result = new Result();
 				result.set("question", question);
-				result.set("answerOption", optionObj);
+				result.set("answer", optionObj);
 
 				results.push(result);
 			}
