@@ -42,7 +42,7 @@
 
 					React.render(
 						React.createElement(QuestionList, {questions: questionList, sessionId: sessionId}),
-						document.getElementById('questions')
+						document.getElementById('content')
 					);
 				},
 				error: function(error) {

@@ -79,10 +79,13 @@ var QuestionList = React.createClass({
 	render: function() {
 		if (this.state.questions.length > 0) {
 			return (
-				<form id="survey-form" onSubmit={this.handleSubmit} className="pure-form">
-					<div>{this.state.questions}</div>
-					<input id="submit" type="submit" value="Submit" className="pure-button pure-button-primary" />
-				</form>
+				<div className="questions">
+					<h1 className="content-subhead">Current questions</h1>
+					<form id="survey-form" onSubmit={this.handleSubmit} className="pure-form">
+						<div>{this.state.questions}</div>
+						<input id="submit" type="submit" value="Submit" className="pure-button pure-button-primary" />
+					</form>
+				</div>
 			);
 		}
 		
