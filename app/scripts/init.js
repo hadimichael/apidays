@@ -62,7 +62,7 @@ if (typeof console === 'undefined') {
 			NAMESPACE.results.showResultForQuestion(questionId);
 		});
 
-		crossroads.routed.add(console.log, console); //log all routes for debugging
+		// crossroads.routed.add(console.log, console); //log all routes for debugging
 		
 		/* setup hasher - browser url hashes */
 		function parseHash(newHash, oldHash){
