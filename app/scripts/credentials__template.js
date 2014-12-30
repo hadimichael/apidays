@@ -12,7 +12,7 @@
 				jsKey: 'YOUR_PARSE_JAVASCRIPT_KEY'
 			},
 			cookieKey: 'apidays15-sessionId'
-		}
+		};
 		
 	}());
 

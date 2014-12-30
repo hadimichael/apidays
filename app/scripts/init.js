@@ -65,7 +65,7 @@ if (typeof console === 'undefined') {
 		// crossroads.routed.add(console.log, console); //log all routes for debugging
 		
 		/* setup hasher - browser url hashes */
-		function parseHash(newHash, oldHash){
+		function parseHash(newHash) { //2nd arg is 'oldHash'
 			crossroads.parse(newHash);
 		}
 		hasher.initialized.add(parseHash); //parse initial hash

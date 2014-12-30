@@ -41,6 +41,7 @@
 						});
 					}
 
+					/* global QuestionList */
 					React.render(
 						React.createElement(QuestionList, {questions: questionList, sessionId: sessionId}),
 						document.getElementById('content')

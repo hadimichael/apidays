@@ -149,7 +149,7 @@ module.exports = function (grunt) {
     },
 
     react: {
-      dynamic_mappings: {
+      dynamicMappings: {
         files: [
           {
             expand: true,

@@ -19,6 +19,7 @@
 						});
 					}
 
+					/* global Results */
 					React.render(
 						React.createElement(Results, {questions: questionList}),
 						document.getElementById('content')
@@ -44,7 +45,7 @@
 				resultQuery.equalTo('question', question);
 				resultQuery.include('answer');
 				
-				return resultQuery.find()
+				return resultQuery.find();
 			}).then(function(results) {
 				res.results = results;
 
@@ -85,6 +86,7 @@
 					series.showInLegend = true;
 				}
 
+				/* global Chart */
 				React.render(
 					React.createElement(Chart, {title: questionTitle, categories: categories, series: [series], id: res.question.id}),
 					document.getElementById('content')
