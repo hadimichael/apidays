@@ -21,21 +21,25 @@ if (typeof console === 'undefined') {
 			var sessionId = Cookies.get(NAMESPACE.credentials.cookieKey),
 				Session = Parse.Object.extend('Session'),
 				createSession = function() {
-					var session = new Session();
-
 					//get the user IP to store
-					$.getJSON('http://api.ipify.org?format=json',
-						function(response) {
+					$.ajax({
+						dataType: 'jsonp',
+						url: 'http://api.ipify.org?format=jsonp&callback=?',
+						success: function(response) {
+							var session = new Session();
 							session.set('ip', response.ip);
 
+							console.log(session)
+
 							session.save().then(function(obj) {
+								console.log('then')
 								Cookies.set(NAMESPACE.credentials.cookieKey, obj.id, {expires: new Date(2015, 0, 1)});
 								NAMESPACE.questions.init(obj.id);
 							}, function(error) {
 								console.error('Could not create session', error);
 							});
 						}
-					);
+					});
 				};
 
 			if (sessionId) {
