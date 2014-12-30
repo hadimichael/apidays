@@ -11,32 +11,51 @@ if (typeof console === 'undefined') {
 	NAMESPACE.init = function() {
 		Parse.initialize(NAMESPACE.credentials.parse.appId, NAMESPACE.credentials.parse.jsKey);
 
-		if (!Cookies.enabled) { $('#questions').html('<p>You must have cookies enabled.</p>'); return; }
+		/* setup crossroads - routing */
 
-		//organise sessions
-		var sessionId = Cookies.get(NAMESPACE.credentials.cookieKey);
+		// root directory: check sessions and load the questions
+		crossroads.addRoute('/', function() {
+			if (!Cookies.enabled) { $('#content').html('<p>You must have cookies enabled.</p>'); return; }
 
-		if (sessionId) {
-			NAMESPACE.questions.init(sessionId);
-		} else {
-			var Session = Parse.Object.extend('Session'),
-				session = new Session();
-			
-			//get the user IP to store
-			$.getJSON("http://api.ipify.org?format=jsonp&callback=?",
-				function(response) {
-					session.set('ip', response.ip);
+			//organise sessions
+			var sessionId = Cookies.get(NAMESPACE.credentials.cookieKey);
 
-					session.save().then(function(obj) {
-						Cookies.set(NAMESPACE.credentials.cookieKey, obj.id, {expires: new Date(2015, 0, 1)});
-						NAMESPACE.questions.init(obj.id);
-					}, function(error) {
-						console.error('Could not create session');
-					});
-				}
-			);
+			if (sessionId) {
+				NAMESPACE.questions.init(sessionId);
+			} else {
+				var Session = Parse.Object.extend('Session'),
+					session = new Session();
+				
+				//get the user IP to store
+				$.getJSON('http://api.ipify.org?format=json',
+					function(response) {
+						session.set('ip', response.ip);
+
+						session.save().then(function(obj) {
+							Cookies.set(NAMESPACE.credentials.cookieKey, obj.id, {expires: new Date(2015, 0, 1)});
+							NAMESPACE.questions.init(obj.id);
+						}, function(error) {
+							console.error('Could not create session', error);
+						});
+					}
+				);
+			}
+		});
+
+		//results
+		crossroads.addRoute('/results', function() {
+			console.log('Results page');
+		});
+
+		crossroads.routed.add(console.log, console); //log all routes
+		
+		/* setup hasher - browser url hashes */
+		function parseHash(newHash, oldHash){
+			crossroads.parse(newHash);
 		}
-
+		hasher.initialized.add(parseHash); //parse initial hash
+		hasher.changed.add(parseHash); //parse hash changes
+		hasher.init(); //start listening for history change
 	};
 
 	$(document).ready(function() {

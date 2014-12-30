@@ -17,5 +17,12 @@
   "strict": true,
   "trailing": true,
   "smarttabs": true,
-  "jquery": true
+  "jquery": true,
+  "globals": {
+    "APIDAYS": true,
+    "Parse": true,
+    "Cookies": true,
+    "crossroads": true,
+    "hasher": true
+  }
 }
