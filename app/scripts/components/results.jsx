@@ -1,9 +1,27 @@
 var Results = React.createClass({
 	render: function() {
+		var series = [{
+			type: 'pie',
+			name: 'Browser share',
+			data: [
+				['Firefox',   45.0],
+				['IE',       26.8],
+				{
+					name: 'Chrome',
+					y: 12.8,
+					sliced: true,
+					selected: true
+				},
+				['Safari',    8.5],
+				['Opera',     6.2],
+				['Others',   0.7]
+			]
+		}];
+
 		return (
 				<div className="results">
 					<h1 className="content-subhead">Question Results</h1>
-					<PieChart />
+					<PieChart series={series} id="browser" />
 				</div>
 			);
 	}

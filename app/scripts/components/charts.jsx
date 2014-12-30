@@ -1,6 +1,9 @@
 var PieChart = React.createClass({
+	getInitialState: function() {
+		return {series: this.props.series, id: this.props.id};
+	},
 	componentDidMount: function() {
-		$('#chart').highcharts({
+		$('#'+this.state.id).highcharts({
 			chart: {
 				plotBackgroundColor: null,
 				plotBorderWidth: null,
@@ -29,35 +32,12 @@ var PieChart = React.createClass({
 					}
 				}
 			},
-			series: [{
-				type: 'pie',
-				name: 'Browser share',
-				data: [
-					['Firefox',   45.0],
-					['IE',       26.8],
-					{
-						name: 'Chrome',
-						y: 12.8,
-						sliced: true,
-						selected: true
-					},
-					['Safari',    8.5],
-					['Opera',     6.2],
-					['Others',   0.7]
-				]
-			}]
+			series: this.state.series
 		});
 	},
 	render: function() {
-		var divStyle = {
-			minWidth: '310px',
-			height: '400px',
-			maxWidth: '600px',
-			margin: '0 auto'
-		};
-
 		return (
-				<div id="chart" style={divStyle}></div>
+				<div className="chart" id={this.state.id}></div>
 			);
 	}
 });
