@@ -18,29 +18,38 @@ if (typeof console === 'undefined') {
 			if (!Cookies.enabled) { $('#content').html('<p>You must have cookies enabled.</p>'); return; } //TODO: build a proper notifications UI
 
 			//organise sessions
-			var sessionId = Cookies.get(NAMESPACE.credentials.cookieKey);
+			var sessionId = Cookies.get(NAMESPACE.credentials.cookieKey),
+				Session = Parse.Object.extend('Session'),
+				createSession = function() {
+					var session = new Session();
+
+					//get the user IP to store
+					$.getJSON('http://api.ipify.org?format=json',
+						function(response) {
+							session.set('ip', response.ip);
+
+							session.save().then(function(obj) {
+								Cookies.set(NAMESPACE.credentials.cookieKey, obj.id, {expires: new Date(2015, 0, 1)});
+								NAMESPACE.questions.init(obj.id);
+							}, function(error) {
+								console.error('Could not create session', error);
+							});
+						}
+					);
+				};
 
 			if (sessionId) {
-				//we have a session, so let's init with that ID
-				NAMESPACE.questions.init(sessionId);
+				//we have a session, so let's validate it
+				var query = new Parse.Query(Session);
+				query.get(sessionId).then(function(session) {
+					NAMESPACE.questions.init(session.id); //init with our valid ID
+				}, function (error) {
+					console.error('Could not validate existing session. Will create a new session instead.', error);
+					createSession();
+				});
 			} else {
 				//otherwise, start a new session and get an ID
-				var Session = Parse.Object.extend('Session'),
-					session = new Session();
-				
-				//get the user IP to store
-				$.getJSON('http://api.ipify.org?format=json',
-					function(response) {
-						session.set('ip', response.ip);
-
-						session.save().then(function(obj) {
-							Cookies.set(NAMESPACE.credentials.cookieKey, obj.id, {expires: new Date(2015, 0, 1)});
-							NAMESPACE.questions.init(obj.id);
-						}, function(error) {
-							console.error('Could not create session', error);
-						});
-					}
-				);
+				createSession();
 			}
 		});
 
