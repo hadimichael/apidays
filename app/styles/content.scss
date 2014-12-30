@@ -23,3 +23,19 @@
 		margin-left: 25%;
 	}
 }
+
+.chart {
+	width: 100%;
+	margin: 0 auto;
+}
+
+.pure-menu {
+	&.pure-menu-open {
+		background: transparent;
+		border: none;
+	}
+
+	& li a {
+		padding: 5px;
+	}
+}
