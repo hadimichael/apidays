@@ -1,0 +1,65 @@
+/* SIDEBAR */
+.sidebar {
+	background: rgb(61, 79, 93);
+	color: #fff;
+}
+
+.header {
+	text-align: center;
+	top: auto;
+	margin: 2em 1em;
+
+	.talk-title,
+	.talk-context {
+		margin: 0;
+	}
+	.talk-title {
+		font-size: 1.75em;
+	}
+	.talk-context {
+		font-weight: 300;
+		font-size: 1.2em;
+		color: rgb(176, 202, 219);
+	}
+}
+
+.nav-list {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+.nav-item {
+	display: inline-block;
+	*display: inline;
+	zoom: 1;
+}
+.nav-item a {
+	background: transparent;
+	border: 2px solid rgb(176, 202, 219);
+	color: #fff;
+	margin-top: 1em;
+	letter-spacing: 0.05em;
+	text-transform: uppercase;
+	font-size: 70%;
+}
+.nav-item a:hover,
+.nav-item a:focus {
+	border: 2px solid rgb(61, 146, 201);
+	text-decoration: none;
+}
+
+@media screen and (min-width: 48em) {
+	.header {
+		text-align: right;
+	}
+
+	.nav-item a {
+		font-size: 85%;
+	}
+
+	.sidebar {
+		position: fixed;
+		top: 0;
+		bottom: 0;
+	}
+}
