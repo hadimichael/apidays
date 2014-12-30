@@ -5,7 +5,6 @@
 	NAMESPACE.questions = (function() {
 
 		var init = function(sessionId) {
-			var questionList = [];
 			var Question = Parse.Object.extend('Question');
 			var query = new Parse.Query(Question);
 			query.equalTo('available', true);
@@ -17,6 +16,8 @@
 			query.include('options');
 			query.find({
 				success: function(questions) {
+					var questionList = [];
+					
 					for (var i=0; i < questions.length; i++) {
 						var values = [],
 							question = questions[i];

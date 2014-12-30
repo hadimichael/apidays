@@ -1,27 +1,13 @@
 var Results = React.createClass({
 	render: function() {
-		var series = [{
-			type: 'pie',
-			name: 'Browser share',
-			data: [
-				['Firefox',   45.0],
-				['IE',       26.8],
-				{
-					name: 'Chrome',
-					y: 12.8,
-					sliced: true,
-					selected: true
-				},
-				['Safari',    8.5],
-				['Opera',     6.2],
-				['Others',   0.7]
-			]
-		}];
+		var questions = this.props.questions.map(function(question) {
+			return <li key={question.key}><a href={"#/results/" + question.key}>{question.title}</a></li>
+		});
 
 		return (
 				<div className="results">
-					<h1 className="content-subhead">Question Results</h1>
-					<PieChart series={series} id="browser" />
+					<h1 className="content-subhead">Results</h1>
+					<ul>{questions}</ul>
 				</div>
 			);
 	}

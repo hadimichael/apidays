@@ -13,16 +13,18 @@ if (typeof console === 'undefined') {
 
 		/* setup crossroads - routing */
 
-		// root directory: check sessions and load the questions
+		// root directory: check sessions and load the questions, sessions are used to stop people from seeing questions they've already answered
 		crossroads.addRoute('/', function() {
-			if (!Cookies.enabled) { $('#content').html('<p>You must have cookies enabled.</p>'); return; }
+			if (!Cookies.enabled) { $('#content').html('<p>You must have cookies enabled.</p>'); return; } //TODO: build a proper notifications UI
 
 			//organise sessions
 			var sessionId = Cookies.get(NAMESPACE.credentials.cookieKey);
 
 			if (sessionId) {
+				//we have a session, so let's init with that ID
 				NAMESPACE.questions.init(sessionId);
 			} else {
+				//otherwise, start a new session and get an ID
 				var Session = Parse.Object.extend('Session'),
 					session = new Session();
 				
@@ -42,13 +44,16 @@ if (typeof console === 'undefined') {
 			}
 		});
 
-		//results
+		// results: show a list of results, or the graph for a specific question
 		crossroads.addRoute('/results', function() {
-			console.log('Results page');
-			NAMESPACE.results.init();
+			NAMESPACE.results.showListOfQuestions();
 		});
 
-		crossroads.routed.add(console.log, console); //log all routes
+		crossroads.addRoute('/results/{questionId}', function(questionId) {
+			NAMESPACE.results.showResultForQuestion(questionId);
+		});
+
+		crossroads.routed.add(console.log, console); //log all routes for debugging
 		
 		/* setup hasher - browser url hashes */
 		function parseHash(newHash, oldHash){

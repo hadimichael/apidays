@@ -21,6 +21,17 @@
 		font-size: 1.2em;
 		color: rgb(176, 202, 219);
 	}
+
+	.talk-title a,
+	.talk-title a:visited {
+		text-decoration: none;
+		color: #fff;
+	}
+
+	.talk-title a:hover,
+	.talk-title a:focus {
+		text-decoration: underline;
+	}
 }
 
 .nav-list {
@@ -42,8 +53,7 @@
 	text-transform: uppercase;
 	font-size: 70%;
 }
-.nav-item a:hover,
-.nav-item a:focus {
+.nav-item a:hover {
 	border: 2px solid rgb(61, 146, 201);
 	text-decoration: none;
 }
