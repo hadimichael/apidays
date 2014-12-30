@@ -6,6 +6,7 @@ var Chart = React.createClass({
 		var series = this.state.series[0];
 
 		$('#'+this.state.id).highcharts({
+			colors: ['#2E3D4B', '#91e8e1', '#90ed7d', '#f7a35c', '#8085e9', '#f15c80', '#e4d354', '#8085e8', '#8d4653'],
 			chart: {
 				plotBackgroundColor: null,
 				plotBorderWidth: null,
@@ -38,7 +39,7 @@ var Chart = React.createClass({
 				itemStyle: {
 					width: 200
 				},
-				labelFormat: '{percentage:.1f}%: {name}'
+				labelFormat: '{percentage:.1f}% - {name}'
 			},
 			plotOptions: {
 				pie: {
@@ -46,7 +47,7 @@ var Chart = React.createClass({
 					cursor: 'pointer',
 					dataLabels: {
 						enabled: false,
-						format: '<b>{point.name}</b>: {point.percentage:.1f}%',
+						format: '<b>{point.name}</b> - {point.percentage:.1f}%',
 						style: {
 							color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black'
 						}
@@ -56,7 +57,10 @@ var Chart = React.createClass({
 					cursor: 'pointer'
 				}
 			},
-			series: this.state.series
+			series: this.state.series,
+			credits: {
+				enabled: false
+			}
 		});
 	},
 	render: function() {
