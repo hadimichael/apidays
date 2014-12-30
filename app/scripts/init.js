@@ -24,7 +24,7 @@ if (typeof console === 'undefined') {
 					//get the user IP to store
 					$.ajax({
 						dataType: 'jsonp',
-						url: 'http://api.ipify.org?format=jsonp&callback=?',
+						url: 'https://api.ipify.org?format=jsonp&callback=?',
 						success: function(response) {
 							var session = new Session();
 							session.set('ip', response.ip);
@@ -48,7 +48,7 @@ if (typeof console === 'undefined') {
 				query.get(sessionId).then(function(session) {
 					NAMESPACE.questions.init(session.id); //init with our valid ID
 				}, function (error) {
-					console.error('Could not validate existing session. Will create a new session instead.', error);
+					console.warn('Could not validate existing session. Will create a new session instead.', error);
 					createSession();
 				});
 			} else {
