@@ -29,10 +29,7 @@ if (typeof console === 'undefined') {
 							var session = new Session();
 							session.set('ip', response.ip);
 
-							console.log(session)
-
 							session.save().then(function(obj) {
-								console.log('then')
 								Cookies.set(NAMESPACE.credentials.cookieKey, obj.id, {expires: new Date(2015, 0, 1)});
 								NAMESPACE.questions.init(obj.id);
 							}, function(error) {
