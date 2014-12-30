@@ -61,38 +61,32 @@
 				}
 
 				var categories = [],
-					pieData = [],
-					columnData = [],
+					data = [],
 					options = res.question.get('options');
 				for (var i in options) {
 					var text = options[i].get('text');
 					var count = counter[text] || 0;
 
 					categories.push(text);
-					columnData.push(count);
-					pieData.push([text, count]);
+					data.push([text, count]);
 				}
 
-				var series = [];
+				var series = {
+					name: questionTitle,
+					data: data
+				};
 				if (res.question.get('acceptsMultipleOptions')) {
-					//bar graph
-					series = [{
-						name: questionTitle,
-						showInLegend: false,
-						type: 'column',
-						data: columnData
-					}];
+					//column graph
+					series.type = 'column';
+					series.showInLegend = false;
 				} else {
 					//pie chart
-					series = [{
-						name: questionTitle,
-						type: 'pie',
-						data: pieData
-					}];
+					series.type = 'pie';
+					series.showInLegend = true;
 				}
 
 				React.render(
-					React.createElement(Chart, {title: questionTitle, categories: categories, series: series, id: res.question.id}),
+					React.createElement(Chart, {title: questionTitle, categories: categories, series: [series], id: res.question.id}),
 					document.getElementById('content')
 				);
 			}, function(error) {

@@ -20,12 +20,13 @@ var Chart = React.createClass({
 			},
 			tooltip: {
 				formatter: function() { 
-					var total = this.point.total ? this.point.total : series.data.reduce( function(sum, num){ return sum + num }, 0)
-					return '<b>Responses: ' + this.point.y + '</b><br/>Total: ' + total;
+					var total = this.point.total ? this.point.total : series.data.map(function(point) { return isNaN(point[1]) ? 0 : point[1] }).reduce( function(sum, num){ return sum + num }, 0)
+					var percentage = this.point.percentage ? this.point.percentage : this.point.y*100/total;
+					return '<b>' + this.point.name + '</b><br />Responses: ' + this.point.y + ' (' + Math.round(percentage*10)/10 + '%)<br/>Total: ' + total;
 				}
 			},
 			xAxis: {
-				categories: this.state.categories
+				type: 'category'
 			},
 			yAxis: {
 				min: 0,
@@ -33,17 +34,26 @@ var Chart = React.createClass({
 					text: 'Number of responses'
 				},
 			},
+			legend: {
+				itemStyle: {
+					width: 200
+				},
+				labelFormat: '{percentage:.1f}%: {name}'
+			},
 			plotOptions: {
 				pie: {
 					allowPointSelect: true,
 					cursor: 'pointer',
 					dataLabels: {
-						enabled: true,
+						enabled: false,
 						format: '<b>{point.name}</b>: {point.percentage:.1f}%',
 						style: {
 							color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black'
 						}
 					}
+				},
+				column: {
+					cursor: 'pointer'
 				}
 			},
 			series: this.state.series
