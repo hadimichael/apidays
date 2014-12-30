@@ -6,7 +6,7 @@ var Results = React.createClass({
 
 		return (
 				<div className="results">
-					<h1 className="content-subhead">Results</h1>
+					<h1 className="content-subhead">View Results</h1>
 					<div className="pure-menu pure-menu-open">
 						<ul>{questions}</ul>
 					</div>
