@@ -45,7 +45,7 @@
 										<a class="pure-button" href="https://twitter.com/hadi_michael">@hadi_michael</a>
 									</li>
 									<li class="nav-item">
-										<a class="pure-button" href="/results.html">Show Results</a>
+										<a class="pure-button" href="/#results">Show Results</a>
 									</li>
 								</ul>
 						</nav>
@@ -74,6 +74,9 @@
 		<script src="bower_components/crossroads/dist/crossroads.js"></script>
 		<script src="bower_components/js-signals/dist/signals.js"></script>
 		<script src="bower_components/hasher/dist/js/hasher.js"></script>
+		<script src="bower_components/highcharts-release/highcharts.js"></script>
+		<script src="bower_components/highcharts-release/highcharts-more.js"></script>
+		<script src="bower_components/highcharts-release/modules/exporting.js"></script>
 		<!-- endbower -->
 		<!-- endbuild -->
 
@@ -87,11 +90,17 @@
 			ga('create','UA-XXXXX-X');ga('send','pageview');
 		</script>
 
-				<!-- build:js({app,.tmp}) scripts/scripts.js -->
+				<!-- build:js({app,.tmp}) scripts/components.js -->
 				<script src="scripts/components/compiled/options.js"></script>
 				<script src="scripts/components/compiled/questions.js"></script>
+				<script src="scripts/components/compiled/charts.js"></script>
+				<script src="scripts/components/compiled/results.js"></script>
+				<!-- endbuild -->
+				
+				<!-- build:js({app,.tmp}) scripts/scripts.js -->
 				<script src="scripts/credentials.js"></script>
 				<script src="scripts/questions.js"></script>
+				<script src="scripts/results.js"></script>
 				<script src="scripts/init.js"></script>
 				<!-- endbuild -->
 </body>

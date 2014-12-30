@@ -45,6 +45,7 @@ if (typeof console === 'undefined') {
 		//results
 		crossroads.addRoute('/results', function() {
 			console.log('Results page');
+			NAMESPACE.results.init();
 		});
 
 		crossroads.routed.add(console.log, console); //log all routes
