@@ -13,3 +13,19 @@ $sidebar-paragraph-color: #fafafa;
 
 $sidebar-heading-color: $sidebar-paragraph-color;
 $sidebar-subheading-color: #B0CADB;
+
+$sidebar-link-color: $sidebar-paragraph-color;
+$sidebar-link-color-hover: lighten($sidebar-paragraph-color, 10);
+
+//nav
+$nav-item-bg-color: $sidebar-bg-color;
+$nav-item-bg-color-hover: darken($sidebar-bg-color, 5);
+$nav-item-border-color: $sidebar-subheading-color;
+$nav-item-border-color-hover: lighten($nav-item-border-color, 10);
+
+//links
+$link-color: $nav-item-bg-color;
+$link-color-hover: $nav-item-bg-color-hover;
+
+//borders
+$border-color: #eee;

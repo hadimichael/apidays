@@ -24,11 +24,12 @@
 
 	.talk-title a {
 		text-decoration: none;
-		color: $sidebar-paragraph-color;
+		color: $sidebar-link-color;
 	}
 
 	.talk-title a:hover,
 	.talk-title a:focus {
+		color: $sidebar-link-color-hover;
 		text-decoration: underline;
 	}
 }
@@ -42,20 +43,22 @@
 	display: inline-block;
 	*display: inline;
 	zoom: 1;
-}
-.nav-item a {
-	background: transparent;
-	border: 2px solid rgb(176, 202, 219);
-	color: #fff;
-	margin-top: 1em;
-	letter-spacing: 0.05em;
-	text-transform: uppercase;
-	font-size: 70%;
 
-	&:hover {
-		background-color: #273440;
-		border: 2px solid rgb(61, 146, 201);
-		text-decoration: none;
+	& a {
+		background: transparent;
+		border: 2px solid $nav-item-border-color;
+		color: $sidebar-link-color;
+		margin-top: 1em;
+		letter-spacing: 0.05em;
+		text-transform: uppercase;
+		font-size: 70%;
+
+		&:hover,
+		&:focus {
+			background-color: $nav-item-bg-color-hover;
+			border: 2px solid $nav-item-border-color-hover;
+			text-decoration: none;
+		}
 	}
 }
 

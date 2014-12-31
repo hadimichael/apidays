@@ -18,6 +18,26 @@ body {
 	box-sizing: border-box;
 }
 
+a {
+	-moz-transition-property: color, background-color, border-color;
+	-o-transition-property: color, background-color, border-color;
+	-webkit-transition-property: color, background-color, border-color;
+	transition-property: color, background-color, border-color;
+	-moz-transition-duration: 250ms;
+	-o-transition-duration: 250ms;
+	-webkit-transition-duration: 250ms;
+	transition-duration: 250ms;
+
+	color: $link-color;
+	text-decoration: none;
+
+	&:hover,
+	&:focus {
+		color: $link-color-hover;
+		text-decoration: underline;
+	}
+}
+
 /* deal with people stuck in the past */
 .browsehappy {
 	margin: 0.2em 0;
@@ -29,17 +49,6 @@ body {
 .no-js .loader,
 .js .no-js-message {
 	display: none;
-}
-
-a {
-	-moz-transition-property: color, background-color, border-color;
-	-o-transition-property: color, background-color, border-color;
-	-webkit-transition-property: color, background-color, border-color;
-	transition-property: color, background-color, border-color;
-	-moz-transition-duration: 250ms;
-	-o-transition-duration: 250ms;
-	-webkit-transition-duration: 250ms;
-	transition-duration: 250ms;
 }
 
 // ==========================================================================
