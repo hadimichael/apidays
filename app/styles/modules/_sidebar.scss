@@ -1,7 +1,7 @@
 /* SIDEBAR */
 .sidebar {
-	background: rgb(61, 79, 93);
-	color: #fff;
+	background: $sidebar-bg-color;
+	color: $sidebar-paragraph-color;
 }
 
 .header {
@@ -19,13 +19,12 @@
 	.talk-context {
 		font-weight: 300;
 		font-size: 1.2em;
-		color: rgb(176, 202, 219);
+		color: $sidebar-subheading-color;
 	}
 
-	.talk-title a,
-	.talk-title a:visited {
+	.talk-title a {
 		text-decoration: none;
-		color: #fff;
+		color: $sidebar-paragraph-color;
 	}
 
 	.talk-title a:hover,
@@ -52,10 +51,12 @@
 	letter-spacing: 0.05em;
 	text-transform: uppercase;
 	font-size: 70%;
-}
-.nav-item a:hover {
-	border: 2px solid rgb(61, 146, 201);
-	text-decoration: none;
+
+	&:hover {
+		background-color: #273440;
+		border: 2px solid rgb(61, 146, 201);
+		text-decoration: none;
+	}
 }
 
 @media screen and (min-width: 48em) {
