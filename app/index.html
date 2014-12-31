@@ -14,8 +14,8 @@
 		<link rel="icon" href="/favicon.ico" type="image/x-icon">
 
 		<script>
-			if (window.location.protocol !== 'https:') { window.location.protocol = 'https:'; }
 			window.APIDAYS = window.APIDAYS || {};
+			if (window.location.protocol !== 'https:') { window.location = "https:" + window.location.href.substring(window.location.protocol.length); }
 		</script>
 
 		<!-- build:css(.) styles/vendor.css -->
