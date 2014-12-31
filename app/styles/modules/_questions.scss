@@ -1,5 +1,7 @@
 .questions {
 	.question {
+		padding-bottom: 0.2em;
+
 		.question-title {
 			font-size: 1.5em;
 			color: #222;
@@ -8,7 +10,7 @@
 	}
 
 	.pure-button-custom {
-		margin-top: 2em;
+		margin-top: 1.5em;
 		background-color: $nav-item-bg-color;
 		color: $sidebar-paragraph-color;
 

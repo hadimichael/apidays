@@ -66,7 +66,7 @@ var Chart = React.createClass({
 	render: function() {
 		return (
 				<div className="results">
-					<h1 className="content-subhead">Question: {this.state.title}</h1>
+					<h1 className="content-subhead">{this.state.title}</h1>
 					<div className="chart" id={this.state.id}></div>
 				</div>
 			);
