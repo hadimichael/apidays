@@ -1,9 +1,20 @@
-.question {
-	padding-bottom: 1em;
-}
+.questions {
+	.question {
+		.question-title {
+			font-size: 1.5em;
+			color: #222;
+			margin-bottom: 0.2em;
+		}
+	}
 
-.question-title {
-	font-size: 1.5em;
-	color: #222;
-	margin-bottom: 0.2em;
+	.pure-button-custom {
+		margin-top: 2em;
+		background-color: $nav-item-bg-color;
+		color: $sidebar-paragraph-color;
+
+		&:hover,
+		&:focus {
+			background-color: $nav-item-bg-color-hover;
+		}
+	}
 }

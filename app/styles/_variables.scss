@@ -10,7 +10,6 @@ $page-bg-color: #fafafa;
 //sidebar
 $sidebar-bg-color: #3D4F5D;
 $sidebar-paragraph-color: #fafafa;
-
 $sidebar-heading-color: $sidebar-paragraph-color;
 $sidebar-subheading-color: #B0CADB;
 
@@ -25,7 +24,10 @@ $nav-item-border-color-hover: lighten($nav-item-border-color, 10);
 
 //links
 $link-color: $nav-item-bg-color;
-$link-color-hover: $nav-item-bg-color-hover;
+$link-color-hover: darken($link-color, 10);
 
 //borders
 $border-color: #eee;
+
+//content-subhead
+$content-heading-color: #aaa;
