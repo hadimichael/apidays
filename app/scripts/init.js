@@ -13,7 +13,7 @@ if (typeof console === 'undefined') {
 
 		// root directory: check sessions and load the questions, sessions are used to stop people from seeing questions they've already answered
 		crossroads.addRoute('/', function() {
-			if (!Cookies.enabled) { $('#content').html('<p>You must have cookies enabled.</p>'); return; } //TODO: build a proper notifications UI
+			if (!Cookies.enabled) { $('#content').html('<p>You must have cookies enabled to use this app.</p>'); return; } //TODO: build a proper notifications UI
 
 			//organise sessions
 			var sessionId = Cookies.get(NAMESPACE.credentials.cookieKey),
@@ -73,7 +73,7 @@ if (typeof console === 'undefined') {
 	};
 
 	NAMESPACE.init = function() {
-		$('html.lt-ie9 .loader').html('<p>There\'s nothing for you to see here. This app requires a modern browser.</p>');
+		$('html.lt-ie9 #content').html('<p>There\'s nothing for you to see here. This app requires a modern browser.</p>');
 
 		Parse.initialize(NAMESPACE.credentials.parse.appId, NAMESPACE.credentials.parse.jsKey);
 
