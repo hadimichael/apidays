@@ -28,7 +28,7 @@ if (typeof console === 'undefined') {
 							session.set('ip', response.ip);
 
 							session.save().then(function(obj) {
-								Cookies.set(NAMESPACE.credentials.cookieKey, obj.id, {expires: new Date(2015, 0, 1)});
+								Cookies.set(NAMESPACE.credentials.cookieKey, obj.id);
 								NAMESPACE.questions.init(obj.id);
 							}, function(error) {
 								console.error('Could not create session', error);
