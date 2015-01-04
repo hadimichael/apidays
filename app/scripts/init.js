@@ -31,6 +31,7 @@ if (typeof console === 'undefined') {
 								var expires = 60 * 60 * 24 * 7 * 52; //1 year
 								Cookies.set(NAMESPACE.credentials.cookieKey, obj.id, { expires: expires });
 								NAMESPACE.questions.init(obj.id);
+								ga('send', 'event', 'session', 'created', obj.id);
 							}, function(error) {
 								console.error('Could not create session', error);
 							});
@@ -43,6 +44,7 @@ if (typeof console === 'undefined') {
 				var query = new Parse.Query(Session);
 				query.get(sessionId).then(function(session) {
 					NAMESPACE.questions.init(session.id); //init with our valid ID
+					ga('send', 'event', 'session', 'initialized', session.id);
 				}, function (error) {
 					console.warn('Could not validate existing session. Will create a new session instead.', error);
 					createSession();
@@ -51,15 +53,18 @@ if (typeof console === 'undefined') {
 				//otherwise, start a new session and get an ID
 				createSession();
 			}
+			ga('send', 'event', 'page', 'navigated', '/');
 		});
 
 		// results: show a list of results, or the graph for a specific question
 		crossroads.addRoute('/results', function() {
 			NAMESPACE.results.showListOfQuestions();
+			ga('send', 'event', 'page', 'navigated', '/results');
 		});
 
 		crossroads.addRoute('/results/{questionId}', function(questionId) {
 			NAMESPACE.results.showResultForQuestion(questionId);
+			ga('send', 'event', 'page', 'navigated', '/results/' + questionId);
 		});
 
 		// crossroads.routed.add(console.log, console); //log all routes for debugging

@@ -49,6 +49,7 @@
 				},
 				error: function(error) {
 					console.error('Error: ' + error.code + ' ' + error.message);
+					ga('send', 'event', 'error', 'parse', error.toString());
 				}
 			});
 

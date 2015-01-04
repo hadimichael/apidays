@@ -71,7 +71,8 @@ var QuestionList = React.createClass({
 			console.log('Saved answers', list);
 			self.clearQuestionsByList(list);
 		}, function(error) {
-			console.log('Error', error);
+			console.error(error);
+			ga('send', 'event', 'error', 'parse', error.toString());
 		}).then(function () {
 			submitButton.removeClass(disabledButtonClass);
 		});
