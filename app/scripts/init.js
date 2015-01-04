@@ -28,7 +28,8 @@ if (typeof console === 'undefined') {
 							session.set('ip', response.ip);
 
 							session.save().then(function(obj) {
-								Cookies.set(NAMESPACE.credentials.cookieKey, obj.id);
+								var expires = 60 * 60 * 24 * 7 * 52; //1 year
+								Cookies.set(NAMESPACE.credentials.cookieKey, obj.id, { expires: expires });
 								NAMESPACE.questions.init(obj.id);
 							}, function(error) {
 								console.error('Could not create session', error);
