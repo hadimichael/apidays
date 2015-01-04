@@ -41,7 +41,7 @@
 }
 
 .nav-item {
-	display: block;
+	display: inline-block;
 	*display: inline;
 	zoom: 1;
 
@@ -69,7 +69,7 @@
 	}
 
 	.nav-item {
-		display: inline-block;
+		display: block;
 
 		a {
 			font-size: 85%;
