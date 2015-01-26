@@ -21,7 +21,7 @@
 					for (var i=0; i < questions.length; i++) {
 						var values = [],
 							question = questions[i];
-						var options = question.get('options');
+						var options = question.get('options') || [];
 
 						for (var j=0; j < options.length; j++) {
 							var option = options[j],
