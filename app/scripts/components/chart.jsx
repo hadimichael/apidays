@@ -21,7 +21,7 @@ var Chart = React.createClass({
 				text: ''
 			},
 			tooltip: {
-				formatter: function() { 
+				formatter: function() {
 					var total = this.point.total ? this.point.total : series.data.map(function(point) { return isNaN(point[1]) ? 0 : point[1] }).reduce( function(sum, num){ return sum + num }, 0)
 					var percentage = this.point.percentage ? this.point.percentage : this.point.y*100/total;
 					return '<b>' + this.point.name + '</b><br />Responses: ' + this.point.y + ' (' + Math.round(percentage*10)/10 + '%)<br/>Total: ' + total;
@@ -32,7 +32,7 @@ var Chart = React.createClass({
 				labels: {
 					maxStaggerLines: 3,
 					formatter: function() {
-						return this.value.slice(0,25) + '...');
+						return this.value.slice(0,25) + '...';
 					}
 				}
 			},
