@@ -6,9 +6,18 @@
 // ==========================================================================
 // BASE STYLES
 // ==========================================================================
+html,
+body,
+button,
+input,
+select,
+textarea,
+.pure-g [class *= "pure-u"] {
+	font-family: "Raleway", "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
 body {
 	background: $page-bg-color;
-	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 	color: $paragraph-color;
 }
 
