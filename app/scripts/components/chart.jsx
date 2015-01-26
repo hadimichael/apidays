@@ -11,7 +11,8 @@ var Chart = React.createClass({
 				plotBackgroundColor: null,
 				plotBorderWidth: null,
 				plotShadow: false,
-				backgroundColor: 'transparent'
+				backgroundColor: 'transparent',
+				height: 500
 			},
 			exporting: {
 				enabled: false
@@ -27,7 +28,13 @@ var Chart = React.createClass({
 				}
 			},
 			xAxis: {
-				type: 'category'
+				type: 'category',
+				labels: {
+					maxStaggerLines: 3,
+					formatter: function() {
+						return this.value.slice(0,25) + '...');
+					}
+				}
 			},
 			yAxis: {
 				min: 0,
