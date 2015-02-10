@@ -90,6 +90,6 @@ var QuestionList = React.createClass({
 			);
 		}
 		
-		return (<p>There are no more questions for you at the moment. Please try again later.</p>)
+		return (<p>Thanks! There are no more questions for you at the moment. Please try again later.</p>)
 	}
 });
